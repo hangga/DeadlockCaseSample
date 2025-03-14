@@ -15,6 +15,7 @@ jobs:
       - restore_cache:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
       - run:
+          name: Deadlock info
           command: ./gradlew check -i
       - store_test_results:
           path: build/test-results
