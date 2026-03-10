@@ -25,7 +25,7 @@ class DeadlockUnitTest {
         // Transfer from account3 to account1
         thread {
             account3.transfer(account1, 1000)
-        }.join(500)
+        }.join(200)
 
     }
 
@@ -49,10 +49,16 @@ class DeadlockUnitTest {
     @AfterEach
     fun detectDeadlock() {
         val threadMXBean = ManagementFactory.getThreadMXBean()
-        threadMXBean.findDeadlockedThreads()?.forEach { id ->
-            val threadInfo = threadMXBean.getThreadInfo(id, Int.MAX_VALUE)
-            println("WARNING: Deadlock detected: [id:$id, name:${threadInfo.threadName}, owner:${threadInfo.lockOwnerName}]")
+        val threads = threadMXBean.dumpAllThreads(true, true)
+        threads.forEach { threadInfo ->
+
+            println(
+                "Thread: ${threadInfo.threadName} " +
+                  "[id:${threadInfo.threadId}, state:${threadInfo.threadState}]"
+            )
+
             val stackTrace = threadInfo.stackTrace.joinToString("\n") { it.toString() }
+
             println(stackTrace)
         }
     }
