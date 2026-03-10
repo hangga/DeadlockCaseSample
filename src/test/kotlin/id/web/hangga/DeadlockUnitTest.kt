@@ -8,9 +8,9 @@ import kotlin.concurrent.thread
 class DeadlockUnitTest {
     @Test
     fun `example of deadlock`() {
-        val account1 = Account("Hangga", 1000)
-        val account2 = Account("John", 1000)
-        val account3 = Account("Alice", 2000)
+        val account1 = Account("19000123","Hangga", 1000)
+        val account2 = Account("19000234","John", 1000)
+        val account3 = Account("19000345","Alice", 2000)
 
         // Transfer from account1 to account2
         thread {

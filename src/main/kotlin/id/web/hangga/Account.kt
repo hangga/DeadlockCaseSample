@@ -2,7 +2,7 @@ package id.web.hangga
 
 import java.lang.Thread.sleep
 
-class Account(val name: String, var balance: Int) {
+class Account(val number: String, val name: String, var balance: Int) {
 
     private fun deposit(amount: Int) {
         balance += amount
