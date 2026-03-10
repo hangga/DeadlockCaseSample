@@ -1,5 +1,8 @@
+import org.gradle.kotlin.dsl.kotlin
+
 plugins {
-    kotlin("jvm") version "2.1.10"
+    kotlin("jvm") version "2.2.20"
+    application
 }
 
 group = "io.github.hangga"
@@ -13,12 +16,13 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 }
 
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
     jvmToolchain(17)
 }
